@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name IP_address;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root chatapp_path/chatroom;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:chatapp_path/chatroom/chatapp.sock;
+    }
+}
+
+
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=user_name
+Group=www-data
+WorkingDirectory=chatapp_path/chatroom
+ExecStart=chatapp_path/antenv/bin/gunicorn --workers 3 --bind unix:chatapp_path/chatroom/chatapp.sock chatapp.wsgi:application
+[Install]
+WantedBy=multi-user.target
